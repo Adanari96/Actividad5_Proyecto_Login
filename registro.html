@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Cuenta | Sistema Escolar</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/login.css">
+</head>
+<body class="auth-body">
+
+    <div class="container">
+        <h1>Crear Cuenta</h1>
+        <p class="subtitulo">Regístrate primero para poder generar tus credenciales de acceso.</p>
+
+        <form id="registroForm" novalidate>
+            <label for="reg-nombre">Nombre completo</label>
+            <input type="text" id="reg-nombre" placeholder="Ej. Eduardo Martinez">
+            <span class="error-msg" id="error-nombre" style="display:none;">El nombre solo debe contener letras y espacios.</span>
+
+            <label for="reg-correo">Correo electrónico</label>
+            <input type="text" id="reg-correo" placeholder="ejemplo@correo.com">
+            <span class="error-msg" id="error-correo" style="display:none;">Por favor, ingresa un correo con formato válido.</span>
+
+            <label for="reg-password">Contraseña segura</label>
+            <input type="password" id="reg-password" placeholder="Crea tu contraseña">
+            <span class="error-msg" id="error-password" style="display:none;">
+                Debe tener mínimo 8 caracteres, 1 mayúscula, 1 minúscula, 1 número y 1 carácter especial.
+            </span>
+
+            <button type="submit">Registrarme</button>
+
+            <div class="error-general" id="error-general" style="display:none;"></div>
+        </form>
+
+        <p class="enlace-secundario">
+            ¿Ya tienes una cuenta? <a href="login.html">Inicia sesión aquí</a>
+        </p>
+    </div>
+
+    <script src="js/utileria.js"></script>
+    <script src="js/registro.js"></script>
+</body>
+</html>

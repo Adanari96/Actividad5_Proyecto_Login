@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema | Panel</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="icon" type="image/svg+xml" href="img/favicon.svg">
+    <link rel="stylesheet" href="css/login.css">
+</head>
+<body class="app-body">
+
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-brand">Sistema Escolar</div>
+        <ul class="sidebar-menu">
+
+            <li id="menuUsuarios">
+                <div class="item-titulo" data-target="menuUsuarios">
+                    <span>👤 Usuarios</span>
+                    <span class="flecha">›</span>
+                </div>
+                <ul class="submenu">
+                    <li><button type="button" class="enlace-submenu" data-seccion="usuarios-captura">Captura</button></li>
+                </ul>
+            </li>
+
+            <li id="menuAlumnos">
+                <div class="item-titulo" data-target="menuAlumnos">
+                    <span>🎓 Alumnos</span>
+                    <span class="flecha">›</span>
+                </div>
+                <ul class="submenu">
+                    <li><button type="button" class="enlace-submenu" data-seccion="alumnos-captura">Captura</button></li>
+                </ul>
+            </li>
+
+        </ul>
+    </aside>
+
+    <div class="overlay-movil" id="overlayMovil"></div>
+
+    <header class="navbar" id="navbar">
+        <button class="btn-hamburguesa" id="btnHamburguesa" aria-label="Abrir/cerrar menú">☰</button>
+
+        <div class="navbar-usuario">
+            <button class="navbar-usuario-btn" id="btnUsuario">
+                <span class="avatar" id="avatarUsuario">?</span>
+                <span id="nombreUsuarioNav">Cargando...</span>
+                <span>▾</span>
+            </button>
+            <div class="dropdown-usuario" id="dropdownUsuario">
+                <div class="correo-usuario" id="correoUsuarioDropdown"></div>
+                <button type="button" id="btnSalir">Salir del sistema</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="contenido" id="contenido">
+
+        <section class="seccion activa" id="seccion-inicio">
+            <div class="tarjeta">
+                <span class="badge-info">Panel principal</span>
+                <h2>Bienvenido al sistema</h2>
+                <p class="desc">
+                    Usa el menú lateral para capturar usuarios o alumnos.
+                    Tu sesión fue iniciada correctamente y tu nombre se muestra en la barra superior.
+                </p>
+            </div>
+        </section>
+
+        <section class="seccion" id="seccion-usuarios-captura">
+            <div class="tarjeta">
+                <span class="badge-info">Usuarios / Captura</span>
+                <h2>Registrar usuario</h2>
+                <p class="desc">Correo y contraseña se validan con <code>validarCorreo</code> y <code>validarPassword</code>.</p>
+
+                <form id="formUsuario" novalidate>
+                    <label for="usu-nombre">Nombre de usuario</label>
+                    <input type="text" id="usu-nombre" placeholder="Ej. Juan Pérez">
+                    <span class="error-msg" id="error-usu-nombre" style="display:none;">El nombre solo debe contener letras.</span>
+
+                    <label for="usu-correo">Correo electrónico</label>
+                    <input type="text" id="usu-correo" placeholder="ejemplo@correo.com">
+                    <span class="error-msg" id="error-usu-correo" style="display:none;">Formato de correo inválido.</span>
+
+                    <label for="usu-password">Contraseña</label>
+                    <input type="password" id="usu-password" placeholder="Mín. 8 caracteres, 1 Mayús, 1 núm, 1 especial">
+                    <span class="error-msg" id="error-usu-password" style="display:none;">La contraseña no cumple los requisitos mínimos.</span>
+
+                    <button type="submit">Guardar usuario</button>
+                    <div class="error-general" id="error-usuario-general" style="display:none;"></div>
+                </form>
+            </div>
+        </section>
+
+        <section class="seccion" id="seccion-alumnos-captura">
+            <div class="tarjeta">
+                <span class="badge-info">Alumnos / Captura</span>
+                <h2>Registrar alumno</h2>
+                <p class="desc">El número de control se valida con <code>validarLongitud</code> (6 dígitos exactos).</p>
+
+                <form id="formAlumno" novalidate>
+                    <label for="alu-nombre">Nombre completo</label>
+                    <input type="text" id="alu-nombre" placeholder="Ej. Ana López">
+                    <span class="error-msg" id="error-alu-nombre" style="display:none;">El nombre solo debe contener letras.</span>
+
+                    <label for="alu-control">Número de control (8 dígitos)</label>
+                    <input type="text" id="alu-control" maxlength="8" placeholder="Ej. 23104516">
+                    <span class="error-msg" id="error-alu-control" style="display:none;">Debe tener exactamente 8 dígitos.</span>
+
+                    <label for="alu-fecha">Fecha de nacimiento</label>
+                    <input type="date" id="alu-fecha">
+                    <span class="error-msg" id="error-alu-fecha" style="display:none;">Selecciona una fecha de nacimiento válida.</span>
+
+                    <button type="submit">Guardar y verificar edad</button>
+                    <div class="error-general" id="error-alumno-general" style="display:none;"></div>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <div class="modal-overlay" id="modalUsuario">
+        <div class="modal-content">
+            <button type="button" class="modal-cerrar" data-cerrar-modal="modalUsuario">&times;</button>
+            <div class="modal-icono ok">✓</div>
+            <h3>Usuario registrado</h3>
+            <p id="modalUsuarioTexto"></p>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="modalEdad">
+        <div class="modal-content">
+            <button type="button" class="modal-cerrar" data-cerrar-modal="modalEdad">&times;</button>
+            <div class="modal-icono" id="modalEdadIcono">✓</div>
+            <h3 id="modalEdadTitulo">Resultado</h3>
+            <p id="modalEdadTexto"></p>
+        </div>
+    </div>
+
+    <script src="js/utileria.js"></script>
+    <script src="js/index.js"></script>
+</body>
+</html>
